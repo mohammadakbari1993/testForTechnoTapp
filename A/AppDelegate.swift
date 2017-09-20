@@ -10,13 +10,27 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UINavigationBar.appearance().backgroundColor = UIColor.blue
+        
+        
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "A Ghasem", size: 10)!], for: .normal)
+        
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "A Ghasem", size: 25)!]
+        
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 255, green: 255, blue:255, alpha: 0)
+        
+        
         return true
     }
 

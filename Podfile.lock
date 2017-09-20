@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (4.5.1)
+  - GoogleMaps (2.4.0):
+    - GoogleMaps/Maps (= 2.4.0)
+  - GoogleMaps/Base (2.4.0)
+  - GoogleMaps/Maps (2.4.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.4.0):
+    - GoogleMaps/Base (= 2.4.0)
+  - RNCryptor (5.0.1)
+  - SwiftyJSON (4.0.0-alpha.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - GoogleMaps (~> 2.4)
+  - GooglePlaces (~> 2.4)
+  - RNCryptor (~> 5.0)
+  - SwiftyJSON (= 4.0.0-alpha.1)
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
+  GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
+  RNCryptor: 2e352a488779d1a9184ab629be22a7c5bc84acb5
+  SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
+
+PODFILE CHECKSUM: 3c1e841a81a54819ba140f58ed4fe4dff48056f1
+
+COCOAPODS: 1.2.1
