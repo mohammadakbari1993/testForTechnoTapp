@@ -10,11 +10,7 @@ import UIKit
 
 class AboutViewController: UIViewController, UICollisionBehaviorDelegate {
     
-    
 
-    
-    
-    
 
     let data = ["Contact Us", "Company Goals", "Company Services"]
     let aboutusArray = ["tel : 0211111111 Email: info@technotapp.com" , "Developing and promoting electronic payments and creating solutions to increase productivity in this industry and attract more customers to banks. ","software _ hardware _ making app for IOS devices and android Devices and so... other services"]
@@ -65,7 +61,6 @@ class AboutViewController: UIViewController, UICollisionBehaviorDelegate {
     }
     
 
-    
     func addViewController (atOffset offset:CGFloat, dataForVC data:AnyObject?) -> UIView? {
         
         let frameForView = self.view.bounds.offsetBy(dx: 0, dy: self.view.bounds.size.height - offset)
@@ -264,6 +259,8 @@ class AboutViewController: UIViewController, UICollisionBehaviorDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    
   
 
 }

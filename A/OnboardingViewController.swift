@@ -21,11 +21,6 @@ class OnboardingViewController: UIViewController , PaperOnboardingDataSource , P
         
         onboarding.delegate = self
         onboarding.dataSource = self
-      
-        
-        
-        
-
 
         // Do any additional setup after loading the view.
     }

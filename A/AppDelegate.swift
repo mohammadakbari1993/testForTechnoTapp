@@ -8,12 +8,17 @@
 
 import UIKit
 import CoreData
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
+    
 
+    var googleAPIKey = "AIzaSyBfh9vdLRVti_WTPKY2uOsrKBiV9PEaau8"
+//AIzaSyBPg6a5c6LnUn89J61Zv7rKC-UdsbfKqGU
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 255, green: 255, blue:255, alpha: 0)
         
+        GMSServices.provideAPIKey(googleAPIKey)
+        GMSPlacesClient.provideAPIKey(googleAPIKey)
         
         return true
     }

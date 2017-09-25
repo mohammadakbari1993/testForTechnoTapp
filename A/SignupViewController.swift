@@ -50,6 +50,8 @@ class SignupViewController: UIViewController {
         Passwordtxt.isSecureTextEntry = true
         CreateCityPicker()
         CreateToolbar()
+        self.hideKeyboard()
+        
                
         
         
@@ -144,7 +146,8 @@ class SignupViewController: UIViewController {
             
             self.present(Alert, animated: true, completion: nil)
         }
-            
+        
+        
 
         
     
@@ -153,7 +156,10 @@ class SignupViewController: UIViewController {
 
     @IBAction func VorodBtn(_ sender: Any) {
     
-        self.dismiss(animated: true, completion: nil)
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "login") as! LoginViewController
+        self.present(nextViewController, animated:true, completion:nil)
        
     }
     
@@ -202,7 +208,22 @@ extension SignupViewController : UIPickerViewDelegate , UIPickerViewDataSource {
 //    }
 }
 
-
+extension SignupViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(SignupViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+}
 
 
 

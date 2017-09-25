@@ -38,40 +38,21 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         Detailname.text = sentdata1
         Detailfamily.text = sentdata2
 
-//        let Detailurl = URL(string : sentdata3)
-//        
-//        let imgdata = NSData(contentsOf: Detailurl!)
-//        
-//        Detailimage.image = UIImage(data: imgdata! as Data)
+        let imgurl = URL(string : sentdata3)
         
-          Detailimage.image = UIImage(named: sentdata3)
+        let imgdata = NSData(contentsOf: imgurl!)
+        if imgdata != nil {
+        Detailimage.image = UIImage(data: imgdata! as Data)
+        }
         
-//        
-//        let url = URL(string : "http://www.almachii.ir/test.php")
-//        
-//        do {
-//            let data = try Data(contentsOf : url!)
-//            let info = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
-//            if let json = info["result"] {
-//                for index in 0...json.count-1{
-//                    
-//                    let aObject = json[index] as! [String : AnyObject]
-//                    
-//                    id.append(aObject["id"] as! String)
-//                    name.append(aObject["name"] as! String)
-//                    icon.append(aObject["icon"] as! String)
-//                }
-//            }
-//        }
-//        catch{
-//            print("error")
-//        }
-//   
-//        
+        
+        Detailimage.layer.cornerRadius = Detailimage.frame.width / 2
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

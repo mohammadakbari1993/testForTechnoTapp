@@ -17,6 +17,8 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         
         
         GifView.loadGif(name: "200w_d-2")

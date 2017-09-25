@@ -7,13 +7,27 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegate , UITableViewDelegate , UITableViewDataSource, UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+ 
+    public var dnwstatus = ""
+    
     
     @IBOutlet weak var CollectionView1: UICollectionView!
+    
+    var idtxt : UITextField!
+    var nametxt : UITextField!
+    var imagetxt : UITextField!
+    
+    
+    var idd : String!
+    var namee : String!
+    var imagee: String!
     
     
     @IBOutlet weak var scroller: UIScrollView!
@@ -30,6 +44,77 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
     var family = ["akbari","zad mahmood","mahmoodi","nahrevani","salehi"]
     
 
+    var id : [String] = []
+    var name : [String] = []
+    var icon : [String] = []
+    
+    
+
+    
+
+    
+    @IBAction func addinformation(_ sender: Any) {
+     
+        let Alert = UIAlertController(title: "دریافت اطلاعات", message: "اطلاعات را وارد کنید", preferredStyle:.alert)
+        Alert.addTextField(configurationHandler: idtxt)
+        Alert.addTextField(configurationHandler: nametxt)
+        Alert.addTextField(configurationHandler: imagetxt)
+        
+        
+        Alert.addAction(UIAlertAction(title: "ثبت", style: .default, handler: { (UIAlertAction) in
+            
+         
+            print(self.imagetxt.text as Any)
+            print(self.nametxt.text as Any)
+            print(self.idtxt.text as Any)
+            
+            self.idd = self.idtxt.text
+            self.namee = self.nametxt.text
+            self.imagee = self.imagetxt.text
+            
+            
+            self.Sentdata(id: self.idd, name: self.namee, image: self.imagee)
+            
+            self.id.removeAll()
+            self.name.removeAll()
+            self.icon.removeAll()
+            
+            self.DownloadData()
+            self.tableView.reloadData()
+         
+            
+        }))
+        self.present(Alert, animated: true, completion: nil)
+        
+        Alert.addAction(UIAlertAction(title: "انصراف", style: .cancel, handler: nil))
+        
+
+    }
+    
+    
+    func idtxt(textField : UITextField!)  {
+        idtxt = textField
+        idtxt?.placeholder = "id را وارد کنید"
+        idtxt.textAlignment = .center
+
+    }
+    func nametxt(textField : UITextField!)  {
+        nametxt = textField
+        nametxt?.placeholder = "نام خود را وارد کنید"
+        nametxt.textAlignment = .center
+
+    }
+    func imagetxt(textField : UITextField!)  {
+        imagetxt = textField
+        imagetxt?.placeholder = "آدرسURL عکس را وارد کنید"
+        imagetxt.textAlignment = .center
+
+    }
+
+    
+    
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +125,20 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
         icarouselView.reloadData(startTimer())
         sideMenus()
         scroller.contentInset = UIEdgeInsetsMake(0, 0, 13, 0)
+        DownloadData()
+        
+//        idtxt.layer.cornerRadius = 10
+//        idtxt.alpha = 0.8
+//        
+//        imagetxt.layer.cornerRadius = 10
+//        imagetxt.alpha = 0.8
+//        
+//        nametxt.layer.cornerRadius = 10
+//        nametxt.alpha = 0.8
+        
+    
+        
+        
     }
 
 
@@ -133,6 +232,50 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
 
     
     
+    
+    func Sentdata(id : String , name : String , image : String) {
+        
+        Alamofire.request("http://insdata.almachii.ir/get.php?id="+id+"&name="+name+"&icon="+image).responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
+            
+            if let json = response.result.value {
+                print("JSON: \(json)") // serialized json response
+            }
+            
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)") // original server data as UTF8 string
+                let Alert2 = UIAlertController(title: "ثبت شد", message:"\(utf8Text)", preferredStyle: .alert)
+                Alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+              
+                self.present(Alert2, animated: true, completion: nil)
+                
+                
+ 
+
+                
+                
+            } else {
+                let Alert3 = UIAlertController(title: "ثبت نشد", message:"خطا در ثبت اطلاعات", preferredStyle: .alert)
+                Alert3.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+               
+                self.present(Alert3, animated: true, completion: nil)
+            }
+            
+            self.id.removeAll()
+            self.name.removeAll()
+            self.icon.removeAll()
+            
+            self.DownloadData()
+            self.tableView.reloadData()
+            
+            
+        }
+        return
+    }
+    
+ 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return images2.count
@@ -153,7 +296,7 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return name.count
         
     }
     
@@ -168,15 +311,23 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
         
         let cell : TableViewCell = tableView.dequeueReusableCell(withIdentifier: "TableCell") as! TableViewCell
         
-       cell.nameLbl.text = names[indexPath.row]
-        cell.familyLbl.text = family[indexPath.row]
-////        let imgurl = URL(string : "\(icon[indexPath.row])")
-////        
-////        let imgdata = NSData(contentsOf: imgurl!)
-//        
-//        cell.imageview.image = UIImage(data: imgdata! as Data)
+        cell.nameLbl.text = name[indexPath.row]
+        cell.familyLbl.text = id[indexPath.row]
+        let nameee = name[indexPath.row]
+        let famili = id[indexPath.row]
+        print(nameee)
+        print(famili)
+       
         
-        cell.Bgimabe.image  = UIImage(named: "\(tableimages[indexPath.row])")
+        let imgurl = URL(string : "\(icon[indexPath.row])")
+        
+        let imgdataaa = NSData(contentsOf: imgurl!)
+        if imgdataaa != nil {
+        
+        cell.Bgimabe.image = UIImage(data: imgdataaa! as Data)
+        
+        }
+    //    cell.Bgimabe.image  = UIImage(named: "\(tableimages[indexPath.row])")
         
         
         return cell
@@ -190,15 +341,15 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
             let VC = segue.destination as! DetailViewController
             
             if let indexpath = self.tableView.indexPathForSelectedRow {
-                let Name = names[indexpath.row] as String
+                let Name = name[indexpath.row] as String
                 VC.sentdata1 = Name
                 print(VC.sentdata1)
                 
-                let Id = family[indexpath.row] as String
+                let Id = id[indexpath.row] as String
                 VC.sentdata2 = Id
                 print(VC.sentdata2)
                 
-                let Icon = tableimages[indexpath.row] as String
+                let Icon = icon[indexpath.row] as String
                 VC.sentdata3 = Icon
                 print(VC.sentdata3)
             }
@@ -207,6 +358,45 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
         
     }
 
+    @IBAction func mapview(_ sender: Any) {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "mapView") as! MapViewController
+        self.present(nextViewController, animated:true, completion:nil)
 
+    }
+    
+    
+    func DownloadData(){
+       
+        let url = URL(string : "http://www.almachii.ir/test.php")
+        
+        do {
+            let data = try Data(contentsOf : url!)
+            let info = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
+            
+            print("yori json is :" , info)
+            
+            if let json = info["result"] as? [[String : Any]]{
+                for index in 0...json.count-1{
+                    
+                    let aObject = json[index] as [String : AnyObject]
+                    
+                    id.append(aObject["id"] as! String)
+                    name.append(aObject["name"] as! String)
+                    icon.append(aObject["img"] as! String)
+                    
+                }
+                  dnwstatus = "success"
+            }
+ 
+        }
+        
+        catch{
+            print("error")
+        }
+
+    }
 }
 
