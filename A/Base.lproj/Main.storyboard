@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="f9a-zn-aDe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="f9a-zn-aDe">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,8 +15,14 @@
         <array key="Far_TitrDF.ttf">
             <string>Far.TitrDF</string>
         </array>
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
         <array key="Kohinoor Arabic Light.TTF">
             <string>KohinoorArabic-Light</string>
+        </array>
+        <array key="TrebuchetMS.ttf">
+            <string>TrebuchetMS</string>
         </array>
     </customFonts>
     <scenes>
@@ -48,6 +53,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ky6-o7-voq">
+                                <rect key="frame" x="113" y="444" width="95" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="2R8-Nf-nah"/>
+                                    <constraint firstAttribute="height" constant="30" id="srF-D6-KRH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorArabic-Light" family="Kohinoor Arabic" pointSize="19"/>
+                                <state key="normal" title="تلاش مجدد">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="retrybtn:" destination="f9a-zn-aDe" eventType="touchUpInside" id="5Q5-Xh-tOw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -55,11 +74,13 @@
                             <constraint firstItem="Gog-si-Xzh" firstAttribute="leading" secondItem="hPP-7G-toL" secondAttribute="leadingMargin" constant="121" id="Hgs-XS-yUG"/>
                             <constraint firstItem="ywp-mM-cAz" firstAttribute="top" secondItem="CWj-LB-ymn" secondAttribute="bottom" constant="184" id="JJL-gY-fnJ"/>
                             <constraint firstAttribute="trailing" secondItem="NPa-eG-yPj" secondAttribute="trailing" constant="12" id="PnI-61-Bsk"/>
+                            <constraint firstItem="Ky6-o7-voq" firstAttribute="top" secondItem="Gog-si-Xzh" secondAttribute="bottom" constant="8" id="QvD-wC-5Qz"/>
                             <constraint firstItem="CWj-LB-ymn" firstAttribute="top" secondItem="TAh-OO-n04" secondAttribute="bottom" constant="164" id="SRA-g8-xAg"/>
                             <constraint firstItem="CWj-LB-ymn" firstAttribute="leading" secondItem="hPP-7G-toL" secondAttribute="leadingMargin" constant="44" id="SZe-V3-uMv"/>
                             <constraint firstItem="Gog-si-Xzh" firstAttribute="top" secondItem="CWj-LB-ymn" secondAttribute="bottom" constant="8" id="e2u-og-Bj7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CWj-LB-ymn" secondAttribute="trailing" constant="44" id="eiO-kA-4Gd"/>
                             <constraint firstItem="NPa-eG-yPj" firstAttribute="top" secondItem="TAh-OO-n04" secondAttribute="bottom" constant="106" id="hoh-Ep-gh8"/>
+                            <constraint firstItem="Ky6-o7-voq" firstAttribute="centerX" secondItem="Gog-si-Xzh" secondAttribute="centerX" id="pqc-5Q-f0g"/>
                             <constraint firstItem="NPa-eG-yPj" firstAttribute="leading" secondItem="hPP-7G-toL" secondAttribute="leading" constant="13" id="vup-8r-Vfs"/>
                             <constraint firstItem="ywp-mM-cAz" firstAttribute="top" secondItem="Gog-si-Xzh" secondAttribute="bottom" constant="132" id="wOv-3n-B49"/>
                         </constraints>
@@ -67,6 +88,7 @@
                     <connections>
                         <outlet property="GifView" destination="Gog-si-Xzh" id="ciy-b8-sFB"/>
                         <outlet property="imageView" destination="CWj-LB-ymn" id="uvx-Sy-3iB"/>
+                        <outlet property="retry" destination="Ky6-o7-voq" id="b3j-ZI-gLV"/>
                         <segue destination="qRA-GN-O7D" kind="modal" identifier="showonboarding" id="HhH-yg-mau"/>
                         <segue destination="vpO-4f-Kzx" kind="modal" identifier="showlogin" id="Zvc-Ug-0eX"/>
                     </connections>
@@ -171,7 +193,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bq-xa-kKU">
-                                <rect key="frame" x="16" y="425" width="288" height="29"/>
+                                <rect key="frame" x="16" y="422" width="288" height="32"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AGhasem" family="A Ghasem" pointSize="17"/>
                                 <state key="normal" title="ثبت نام">
@@ -336,7 +358,7 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="لطفا صبر کنید" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxU-Vd-ePX">
-                                <rect key="frame" x="84" y="340" width="152" height="17"/>
+                                <rect key="frame" x="84" y="340" width="152" height="20"/>
                                 <fontDescription key="fontDescription" name="AGhasem" family="A Ghasem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1033,7 +1055,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hcA-4b-JXZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tD8-fF-5FP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1051,7 +1073,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="trJ-As-Cbi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a6G-BX-JtE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1175,7 +1197,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jlk-wK-rhw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xaE-Qw-XaE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1193,7 +1215,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Io9-ik-hAD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="e5g-Ss-42c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1213,13 +1235,8 @@
         <image name="manager" width="512" height="512"/>
         <image name="menu" width="16" height="16"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="NGT-KS-RRR"/>
-        <segue reference="IYp-FD-ewi"/>
+        <segue reference="Zvc-Ug-0eX"/>
     </inferredMetricsTieBreakers>
 </document>

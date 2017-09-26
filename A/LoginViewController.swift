@@ -53,28 +53,21 @@ class LoginViewController: UIViewController {
        
 
         self.hideKeyboard()
-        
-        
-        internetcheck()
 
         }
-        
     
-    func internetcheck()  {
-        if currentReachabilityStatus == .notReachable {
-            let alert = UIAlertController(title: "خطا در اتصال به اینرنت", message: "لطفا اتصال به اینترنت خود را بررسی کنید", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        
+   
+        
+   
     }
-        
-        
-    }
-    
-    @IBAction func VorodBtn(_ sender: Any) {
-        
         
 
+    @IBAction func VorodBtn(_ sender: Any) {
         
+
+   
         
         managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -127,20 +120,6 @@ class LoginViewController: UIViewController {
                 wrongalert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
                 self.present(wrongalert, animated: true, completion: nil)
             }
-
-            
-//            UsernameTxt.placeholder = UsernameTxt.text
-//            UsernameTxt.isUserInteractionEnabled = false
-//            
-//            UsernameTxt.text = ""
-//            PasswordTxt.isUserInteractionEnabled = false
-//            PasswordTxt.placeholder = "******"
-//            PasswordTxt.text = ""
-//            Vorodbtn.alpha = 0.5
-//            SabtBtn.alpha = 0.5
-//            Vorodbtn.isUserInteractionEnabled = false
-//            SabtBtn.isUserInteractionEnabled = false
-           
             
         }  else {
             
@@ -169,6 +148,8 @@ class LoginViewController: UIViewController {
 
 
     @IBAction func SabtNamBtn(_ sender: Any) {
+        
+     
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
@@ -208,8 +189,8 @@ class LoginViewController: UIViewController {
         Vorodbtn.isUserInteractionEnabled = false
         SabtBtn.isUserInteractionEnabled = false
     }
-
     
+
 }
 
 extension LoginViewController

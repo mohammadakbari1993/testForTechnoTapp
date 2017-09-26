@@ -141,6 +141,10 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
         
     }
 
+    
+    override func viewDidAppear(_ animated: Bool) {
+       
+    }
 
 
     @IBAction func Dissmis(_ sender: Any) {
@@ -367,7 +371,7 @@ class ViewController: UIViewController ,  iCarouselDataSource , iCarouselDelegat
 
     }
     
-    
+
     func DownloadData(){
        
         let url = URL(string : "http://www.almachii.ir/test.php")

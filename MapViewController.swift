@@ -56,6 +56,8 @@ class MapViewController: UIViewController ,GMSMapViewDelegate ,  CLLocationManag
         self.googleMaps.settings.zoomGestures = true
         
     }
+
+    
     
     // MARK: function for create a marker pin on map
     func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
@@ -202,6 +204,10 @@ class MapViewController: UIViewController ,GMSMapViewDelegate ,  CLLocationManag
         // when button direction tapped, must call drawpath func
         self.drawPath(startLocation: locationStart, endLocation: locationEnd)
     }
+    
+
+    
+    
     
 }
 

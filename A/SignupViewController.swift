@@ -59,6 +59,7 @@ class SignupViewController: UIViewController {
     
 
 
+
     
     func CreateCityPicker() {
         CityPicker.delegate = self
@@ -98,6 +99,7 @@ class SignupViewController: UIViewController {
 
     
     @IBAction func SabtBtn(_ sender: Any) {
+
         
         
         if (Usenametxt.text != "") && (Emailtxt.text != "") && (Passwordtxt.text != "") {
@@ -223,6 +225,8 @@ extension SignupViewController
     {
         view.endEditing(true)
     }
+    
+
 }
 
 
